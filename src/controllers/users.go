@@ -23,6 +23,11 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if erro := user.ExecuteValidation(); erro != nil {
+		response.Erro(w, http.StatusBadRequest, erro)
+		return
+	}
+
 	db, erro := db.Connect()
 
 	if erro != nil {
