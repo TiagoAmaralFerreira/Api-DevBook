@@ -22,14 +22,20 @@ func Load() {
 		log.Fatal(erro)
 	}
 
-	Porta, erro = strconv.Atoi(os.Getenv("API_PORT"))
+	wd, _ := os.Getwd()
+	port := fmt.Sprintf(wd + os.Getenv("API_PORT"))
+	user := fmt.Sprintf(wd + os.Getenv("DB_USER"))
+	pass := fmt.Sprintf(wd + os.Getenv("DB_PASSWORD"))
+	name := fmt.Sprintf(wd + os.Getenv("DB_NAME"))
+
+	Porta, erro = strconv.Atoi(port)
 	if erro != nil {
 		Porta = 9000
 	}
 
 	StringConexaoBanco = fmt.Sprintf("%s:%s@/%s?charset=utf8&parseTime=True&loc=Local",
-		os.Getenv("DB_USER"),
-		os.Getenv("DB_PASSWORD"),
-		os.Getenv("DB_NAME"),
+		user,
+		pass,
+		name,
 	)
 }
