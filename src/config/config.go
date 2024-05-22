@@ -27,15 +27,17 @@ func Load() {
 	user := fmt.Sprintf(wd + os.Getenv("DB_USER"))
 	pass := fmt.Sprintf(wd + os.Getenv("DB_PASSWORD"))
 	name := fmt.Sprintf(wd + os.Getenv("DB_NAME"))
+	host := fmt.Sprintf(wd + os.Getenv("DB_HOST"))
 
 	Porta, erro = strconv.Atoi(port)
 	if erro != nil {
 		Porta = 5000
 	}
-
-	StringConexaoBanco = fmt.Sprintf("%s:%s@/%s?charset=utf8&parseTime=True&loc=Local",
+	// postgres://%s:%s@%s/devbook
+	StringConexaoBanco = fmt.Sprintf("postgres://%s:%s@%s/%s",
 		user,
 		pass,
+		host,
 		name,
 	)
 }
