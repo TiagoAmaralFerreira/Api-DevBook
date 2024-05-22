@@ -9,7 +9,10 @@ import (
 )
 
 func main() {
-	config.Load()
+	err := config.Load()
+	if err != nil {
+		panic(err)
+	}
 
 	fmt.Printf("Escutando na porta %d", config.Porta)
 	r := router.Gerar()

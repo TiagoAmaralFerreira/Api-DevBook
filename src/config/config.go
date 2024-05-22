@@ -15,7 +15,7 @@ var (
 )
 
 // Load vai inicializar as variaveis de ambiente
-func Load() {
+func Load() error {
 	var erro error
 
 	if erro = godotenv.Load(); erro != nil {
@@ -31,7 +31,7 @@ func Load() {
 
 	Porta, erro = strconv.Atoi(port)
 	if erro != nil {
-		Porta = 5000
+		Porta = 5432
 	}
 	// postgres://%s:%s@%s/devbook
 	StringConexaoBanco = fmt.Sprintf("postgres://%s:%s@%s/%s",
@@ -40,4 +40,6 @@ func Load() {
 		host,
 		name,
 	)
+
+	return nil
 }
