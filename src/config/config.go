@@ -31,7 +31,7 @@ func Load() error {
 
 	Porta, erro = strconv.Atoi(port)
 	if erro != nil {
-		Porta = 5432
+		Porta = 5000
 	}
 	// postgres://%s:%s@%s/devbook
 	StringConexaoBanco = fmt.Sprintf("postgres://%s:%s@%s/%s",
